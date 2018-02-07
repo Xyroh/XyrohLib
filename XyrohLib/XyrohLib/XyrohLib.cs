@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
 
+
 namespace com.xyroh.lib
 {
     public static class XyrohLib
     {
-        public static void test()
+        public static void Test()
         {
-            Debug.WriteLine("WORKING!");
+            Debug.WriteLine("PLATFORM: " + Utilities.GetImplementation().ToString());
         }
+
+
+
+
     }
 }

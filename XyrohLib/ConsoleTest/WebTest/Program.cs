@@ -8,12 +8,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+using com.xyroh.lib;
+
 namespace WebTest
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            XyrohLib.Test();
             BuildWebHost(args).Run();
         }
 
