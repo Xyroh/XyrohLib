@@ -3,3 +3,5 @@
 /XyrohLib/XyrohLib/XyrohLib.csproj.nuget.cache
 bin
 obj
+/XyrohLib/.vs/XyrohLib/v15
+/.vs
