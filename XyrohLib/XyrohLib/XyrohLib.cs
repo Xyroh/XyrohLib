@@ -22,6 +22,7 @@ namespace com.xyroh.lib
         public static void LogException(string eventToLog, Exception exp)
         {
             Logger.LogException(eventToLog, exp);
+            LogCrash(eventToLog, exp);
         }
 
         public static void setFileLog(string fileName)
@@ -33,16 +34,25 @@ namespace com.xyroh.lib
 
 
 
-        public static void setAnalytics(string key)
+        /*public static void setAnalytics(string key)
         {
             Config.AnalyticsKey = key;
-        }
+        }*/
+
+
+        #region CrashReporter
 
         public static void setCrashreporter(string key)
         {
             Config.CrashReporterKey = key;
+            Sentry.SetConfig();
+        }
+        public static void LogCrash(string eventToLog, Exception exp)
+        {
+            Sentry.LogException(eventToLog, exp);
         }
 
+        #endregion
 
 
         public static void Test()

@@ -10,10 +10,6 @@ namespace com.xyroh.lib.Services
         private static object locker = new object();
         public static Config Config { get; set; }
 
-        public static void SetConfig(Config config)
-        {
-
-        }
 
         public static void LogException(string eventToLog, Exception exp)
         {

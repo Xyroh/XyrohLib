@@ -4,3 +4,19 @@
 21/02/2018 22:11:36 : test log 6
 21/02/2018 22:12:19 : test log 6
 21/02/2018 22:12:19 : EXCEPTION: test exception*****
+21/02/2018 22:44:18 : test log 6
+21/02/2018 22:44:18 : EXCEPTION: test exception*****
+21/02/2018 22:47:51 : test log 6
+21/02/2018 22:51:44 : test log 6
+21/02/2018 22:52:24 : test log 7
+21/02/2018 22:53:42 : test log 8
+21/02/2018 22:53:42 : EXCEPTION: unhandled exception*****   at ConsoleTest.Program.Main(String[] args) in C:\Users\Andy\Source\Github\XyrohLib\XyrohLib\ConsoleTest\Program.cs:line 25
+21/02/2018 22:56:48 : test log 8
+21/02/2018 22:56:48 : EXCEPTION: unhandled exception*****   at ConsoleTest.Program.Main(String[] args) in C:\Users\Andy\Source\Github\XyrohLib\XyrohLib\ConsoleTest\Program.cs:line 25
+21/02/2018 23:01:29 : test log 8
+21/02/2018 23:02:09 : test log 9
+21/02/2018 23:02:09 : EXCEPTION: unhandled exception*****   at ConsoleTest.Program.Main(String[] args) in C:\Users\Andy\Source\Github\XyrohLib\XyrohLib\ConsoleTest\Program.cs:line 25
+21/02/2018 23:02:43 : test log 10
+21/02/2018 23:02:43 : EXCEPTION: unhandled exception*****   at ConsoleTest.Program.Main(String[] args) in C:\Users\Andy\Source\Github\XyrohLib\XyrohLib\ConsoleTest\Program.cs:line 25
+21/02/2018 23:03:26 : test log 10 
+21/02/2018 23:03:26 : EXCEPTION: unhandled exception*****   at ConsoleTest.Program.Main(String[] args) in C:\Users\Andy\Source\Github\XyrohLib\XyrohLib\ConsoleTest\Program.cs:line 25
