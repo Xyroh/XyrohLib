@@ -19,6 +19,10 @@ namespace com.xyroh.lib
         {
             Logger.Log(eventToLog);
         }
+        public static void LogException(string eventToLog, Exception exp)
+        {
+            Logger.LogException(eventToLog, exp);
+        }
 
         public static void setFileLog(string fileName)
         {

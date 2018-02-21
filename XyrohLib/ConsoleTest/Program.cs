@@ -16,6 +16,7 @@ namespace ConsoleTest
             XyrohLib.setFileLog("test.log");
             //XyrohLib.Test();
             XyrohLib.Log("test log 6");
+            XyrohLib.LogException("test exception", new Exception("test"));
 
             //logger.Log("test from console");
         }
