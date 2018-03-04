@@ -5,3 +5,4 @@ bin
 obj
 /XyrohLib/.vs/XyrohLib/v15
 /.vs
+/XyrohLib/ConsoleTest/test.log

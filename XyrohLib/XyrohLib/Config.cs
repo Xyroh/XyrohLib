@@ -24,7 +24,7 @@ namespace com.xyroh.lib
             }
         }
 
-        /*static private bool useAnalytics = false;
+        public static bool CanUseAnalytics = false;
         static private string analyticsKey { get; set; }
         static public string AnalyticsKey
         {
@@ -34,14 +34,23 @@ namespace com.xyroh.lib
                 analyticsKey = value;
                 if (!string.IsNullOrEmpty(analyticsKey))
                 {
-                    useAnalytics = true;
-                }
-                else
-                {
-                    useAnalytics = false;
+                    CanUseAnalytics = true;
                 }
             }
-        }*/
+        }
+        static private string analyticsKey2 { get; set; }
+        static public string AnalyticsKey2
+        {
+            get { return analyticsKey2; }
+            set
+            {
+                analyticsKey2 = value;
+                if (!string.IsNullOrEmpty(analyticsKey2))
+                {
+                    CanUseAnalytics = true;
+                }
+            }
+        }
 
         static public bool CanUseCrashReporter= false;
         static private string crashReporterKey { get; set; }
