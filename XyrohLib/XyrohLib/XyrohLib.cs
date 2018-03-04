@@ -5,6 +5,19 @@ using com.xyroh.lib.Services;
 
 namespace com.xyroh.lib
 {
+
+
+    /*
+     * 
+     * In end project add reference to sharpraven and this xyrohlib project, also add nuget for system.configuration.manager
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+
     public class XyrohLib
     {
 
