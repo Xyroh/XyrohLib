@@ -44,5 +44,14 @@ Global
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$0.TextStylePolicy = $4
+		$0.TextStylePolicy = $5
+		$5.inheritsSet = null
+		$5.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $6
+		$6.scope = text/x-csharp
+		$0.TextStylePolicy = $7
+		$7.FileWidth = 80
+		$7.TabsToSpaces = True
+		$7.scope = text/plain
 	EndGlobalSection
 EndGlobal
