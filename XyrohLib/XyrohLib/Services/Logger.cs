@@ -16,6 +16,11 @@ namespace com.xyroh.lib.Services
             Log("EXCEPTION: " + eventToLog + " ***** " + exp.StackTrace);
         }
 
+        public static void LogEvent(string eventToLog)
+        {
+            Log("EVENT: " + eventToLog);
+        }
+
         public static void Log(string eventToLog)
         {
             System.Diagnostics.Debug.WriteLine("Debug Log: " + eventToLog);

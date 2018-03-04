@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 using com.xyroh.lib.Services;
 
@@ -12,7 +13,7 @@ namespace com.xyroh.lib
      * In end project add reference to sharpraven and this xyrohlib project, also add nuget for system.configuration.manager
      * 
      * 
-     * 
+     * added appcenter and appcenter.analytics - platforms for nugets????
      * 
      * 
      */
@@ -47,11 +48,27 @@ namespace com.xyroh.lib
 
 
 
-        /*public static void setAnalytics(string key)
-        {
-            Config.AnalyticsKey = key;
-        }*/
+        #region Analytics
 
+        public static void setAnalytics(string key1, string key2)
+        {
+            Config.AnalyticsKey = key1;
+            Config.AnalyticsKey2 = key2;
+            AppCenterAnalytics.SetConfig();
+        }
+
+        public static void LogEvent(string eventToLog)
+        {
+            AppCenterAnalytics.LogEvent(eventToLog);
+            Logger.LogEvent(eventToLog);
+        }
+        public static void LogEvent(string eventToLog, Dictionary<string, string> dict)
+        {
+            AppCenterAnalytics.LogEvent(eventToLog, dict);
+            Logger.LogEvent(eventToLog);
+        }
+
+        #endregion
 
         #region CrashReporter
 
