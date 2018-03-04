@@ -9,4 +9,7 @@
     <PackageReference Include="SharpRaven" Version="2.2.0" />
     <PackageReference Include="System.Security.Permissions" Version="4.4.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\raven-csharp-develop\src\app\SharpRaven\SharpRaven.csproj" />
+  </ItemGroup>
 </Project>
