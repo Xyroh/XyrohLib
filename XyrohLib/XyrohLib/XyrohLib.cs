@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 using com.xyroh.lib.Services;
+using Microsoft.AppCenter.Analytics;
 
 namespace com.xyroh.lib
 {
@@ -10,10 +11,13 @@ namespace com.xyroh.lib
 
     /*
      * 
-     * In end project add reference to sharpraven and this xyrohlib project, also add nuget for system.configuration.manager
+     * In end project add reference to sharpraven (don't use sharpraven src unless have to) and this xyrohlib project, also add 
      * 
      * 
-     * added appcenter and appcenter.analytics - platforms for nugets????
+     *  `System.Configuration.ConfigurationManager` referenced by assembly `SharpRaven, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null`.
+`Newtonsoft.Json` 
+`Microsoft.AppCenter.Analytics` 
+`Microsoft.AppCenter` 
      * 
      * 
      */
@@ -33,6 +37,12 @@ namespace com.xyroh.lib
         {
             Logger.Log(eventToLog);
         }
+
+        public static void LogException(Exception exp)
+        {
+            LogException(exp.Message, exp);
+        }
+
         public static void LogException(string eventToLog, Exception exp)
         {
             Logger.LogException(eventToLog, exp);
@@ -55,12 +65,14 @@ namespace com.xyroh.lib
             Config.AnalyticsKey = key1;
             Config.AnalyticsKey2 = key2;
             AppCenterAnalytics.SetConfig();
+
+
         }
 
         public static void LogEvent(string eventToLog)
         {
             AppCenterAnalytics.LogEvent(eventToLog);
-            Logger.LogEvent(eventToLog);
+            Logger.LogEvent(eventToLog); //bump to one below
         }
         public static void LogEvent(string eventToLog, Dictionary<string, string> dict)
         {
@@ -77,8 +89,18 @@ namespace com.xyroh.lib
             Config.CrashReporterKey = key;
             Sentry.SetConfig();
         }
+
+        public static void LogCrash(Exception exp)
+        {
+            Logger.LogException(exp.Message, exp);
+            AppCenterAnalytics.LogCrash(exp.Message);
+            Sentry.LogException(exp.Message, exp);
+
+        }
         public static void LogCrash(string eventToLog, Exception exp)
         {
+            Logger.LogException(exp.Message, exp);
+            AppCenterAnalytics.LogCrash(exp.Message);
             Sentry.LogException(eventToLog, exp);
         }
 
