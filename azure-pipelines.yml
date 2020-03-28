@@ -31,8 +31,8 @@ steps:
     command: 'build'
     projects: 'XyrohLib/XyrohLib/Xyrohlib.csproj'
 
-
-- task: VSTest@2
+- task: PublishBuildArtifacts@1
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
