@@ -25,7 +25,6 @@ steps:
   inputs:
     command: 'build'
     projects: 'XyrohLib/XyrohLib/Xyrohlib.csproj'
--
 
 
 - task: VSTest@2
