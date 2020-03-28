@@ -38,16 +38,18 @@ namespace com.xyroh.lib
             Logger.Log(eventToLog);
         }
 
+        //Use LogCrash()
+        /*
         public static void LogException(Exception exp)
         {
             LogException(exp.Message, exp);
         }
 
-        public static void LogException(string eventToLog, Exception exp)
+       public static void LogException(string eventToLog, Exception exp)
         {
             Logger.LogException(eventToLog, exp);
             LogCrash(eventToLog, exp);
-        }
+        }*/
 
         public static void setFileLog(string fileName)
         {
