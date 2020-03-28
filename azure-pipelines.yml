@@ -21,13 +21,12 @@ steps:
   #inputs:
     #restoreSolution: '$(solution)'
 - script: dotnet restore
-
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: 'XyrohLib/XyrohLib/Xyrohlib.csproj'
+-
+
 
 - task: VSTest@2
   inputs:
