@@ -30,8 +30,10 @@ steps:
   inputs:
     command: 'build'
     projects: 'XyrohLib/XyrohLib/Xyrohlib.csproj'
+
 - task: CopyFiles@2
   inputs:
+    SourceFolder: '$(build.sourcesdirectory)'
     Contents: '**'
     TargetFolder: 
 - task: PublishBuildArtifacts@1
