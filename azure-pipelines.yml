@@ -20,7 +20,12 @@ steps:
 #- task: NuGetCommand@2
   #inputs:
     #restoreSolution: '$(solution)'
-- script: dotnet restore
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: 'XyrohLib/XyrohLib.sln'
+    feedsToUse: 'select'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
