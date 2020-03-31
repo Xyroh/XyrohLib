@@ -1,7 +1,11 @@
-[<img src="https://xyroh.visualstudio.com/_apis/public/build/definitions/5ed9479a-0df6-44ff-9e42-9cf0bc55358a/4/badge"/>](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_build/index?definitionId=4)
-
 # XyrohLib
 A cross platform app support library, interfacing to ticket systems, crash reporting, and logging frameworks.  It's a library we use internally across a raft of C# projects on multiple platforms (.net / Xamarin / Console) etc.
 
-Not currently finished, polished, but watch this space and use and enhance as you will
+Not currently finished, polished, but watch this space and use and enhance as you will and create a PR, anything that fits the bill will get approved and added to the master branch.
+
+## Feature Requests
+For things we're working on ourselves, or to request we add support please head over to our [Ideas Board](https://xyroh.atlassian.net/servicedesk/customer/portal/2/topic/46876d1c-e6a6-4fbb-8234-371c3259fecb/article/6488195) to see the state of play and make a request
+
+## Support
+This is not a commercial project, so very much on your own, but if you get stuck feel free to raise a [Support Ticket](https://xyroh.atlassian.net/servicedesk/customer/portal/2/topic/46876d1c-e6a6-4fbb-8234-371c3259fecb) and we'll see what we can do on a best endeavours basis
 
