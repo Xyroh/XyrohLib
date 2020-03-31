@@ -5,6 +5,7 @@ using System.IO;
 
 using SharpRaven;
 using SharpRaven.Data;
+using System.Diagnostics;
 
 namespace com.xyroh.lib.Services
 {

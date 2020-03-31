@@ -7,6 +7,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\XyrohLib\XyrohLib.csproj" />
-    <ProjectReference Include="..\raven-csharp-develop\src\app\SharpRaven\SharpRaven.csproj" />
   </ItemGroup>
 </Project>

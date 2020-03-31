@@ -27,7 +27,7 @@ namespace com.xyroh.lib.Services
         {
             if (Config.CanUseAnalytics)
             {
-                Analytics.TrackEvent(eventToLog);
+                Analytics.TrackEvent("Event: " + eventToLog);
             }
         }
 
@@ -35,7 +35,15 @@ namespace com.xyroh.lib.Services
         {
             if (Config.CanUseAnalytics)
             {
-                Analytics.TrackEvent(eventToLog, dict);
+                Analytics.TrackEvent("Event: " + eventToLog, dict);
+            }
+        }
+
+        public static void LogCrash(string eventToLog)
+        {
+            if (Config.CanUseAnalytics)
+            {
+                Analytics.TrackEvent("Crash: " + eventToLog);
             }
         }
 

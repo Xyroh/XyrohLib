@@ -13,12 +13,12 @@ namespace com.xyroh.lib.Services
 
         public static void LogException(string eventToLog, Exception exp)
         {
-            Log("EXCEPTION: " + eventToLog + " ***** " + exp.StackTrace);
+            Log("Crash: " + eventToLog + " ***** " + exp.StackTrace);
         }
 
         public static void LogEvent(string eventToLog)
         {
-            Log("EVENT: " + eventToLog);
+            Log("Event: " + eventToLog);
         }
 
         public static void Log(string eventToLog)
