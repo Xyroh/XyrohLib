@@ -9,3 +9,7 @@ For things we're working on ourselves, or to request we add support please head 
 ## Support
 This is not a commercial project, so very much on your own, but if you get stuck feel free to raise a [Support Ticket](https://xyroh.atlassian.net/servicedesk/customer/portal/2/topic/46876d1c-e6a6-4fbb-8234-371c3259fecb) and we'll see what we can do on a best endeavours basis
 
+### Build Status
+[![Master](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_apis/build/status/Xyroh.XyrohLib?branchName=master)](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_build/latest?definitionId=12&branchName=master)
+
+[![Develop](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_apis/build/status/Xyroh.XyrohLib?branchName=develop)](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_build/latest?definitionId=12&branchName=develop)
