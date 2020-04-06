@@ -24,6 +24,16 @@ namespace com.xyroh.lib
             }
         }
 
+        private static int maxlogSize { get; set; }
+        public static int MaxLogSize
+        {
+            get { return maxlogSize; }
+            set
+            {
+                maxlogSize = value;
+            }
+        }
+
         public static bool CanUseAnalytics = false;
         static private string analyticsKey { get; set; }
         static public string AnalyticsKey

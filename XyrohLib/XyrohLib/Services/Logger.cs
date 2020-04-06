@@ -29,12 +29,24 @@ namespace com.xyroh.lib.Services
             {
                 lock (locker)
                 {
-                    /*
-                     * 
-                     * TODO:    Better file path / folder / xplatform handling of the logfilepath
-                     */
 
                     string logFilePath = Config.LogFile;
+
+                    if (!File.Exists(logFilePath))
+                    {
+                        File.Create(logFilePath).Dispose();  //don't leave it open
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("*** Log Size: " + new FileInfo(logFilePath).Length.ToString());
+
+                        if (new FileInfo(logFilePath).Length > Config.MaxLogSize) 
+                        {
+                            Console.WriteLine("*** Recycling Log File ***");
+                            File.WriteAllText(logFilePath, String.Empty);
+                        }
+                    }
 
                     using (FileStream file = new FileStream(logFilePath, FileMode.Append, FileAccess.Write, FileShare.None))
                     {

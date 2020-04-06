@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using com.xyroh.lib.Services;
 using Microsoft.AppCenter.Analytics;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace com.xyroh.lib
 {
@@ -51,9 +53,16 @@ namespace com.xyroh.lib
             LogCrash(eventToLog, exp);
         }*/
 
-        public static void setFileLog(string fileName)
+        public static void setFileLog(string fileName) //0.1 compatibility
         {
             Config.LogFile = fileName;
+            Config.MaxLogSize = 1000000;  //default 1MB
+        }
+
+        public static void setFileLog(string fileName, int maxSize)
+        {
+            Config.LogFile = fileName;
+            Config.MaxLogSize = maxSize;
         }
 
         #endregion
@@ -104,6 +113,10 @@ namespace com.xyroh.lib
             Logger.LogException(exp.Message, exp);
             AppCenterAnalytics.LogCrash(exp.Message);
             Sentry.LogException(eventToLog, exp);
+        }
+        public static void LogException(string eventToLog, Exception exp) //0.1 compatibility
+        {
+            LogCrash(eventToLog, exp);
         }
 
         #endregion
