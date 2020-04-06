@@ -47,5 +47,7 @@ Global
 		$7.FileWidth = 80
 		$7.TabsToSpaces = True
 		$7.scope = text/plain
+		$0.StandardHeader = $8
+		version = 1.0.0
 	EndGlobalSection
 EndGlobal

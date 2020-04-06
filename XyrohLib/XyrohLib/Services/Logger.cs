@@ -21,6 +21,18 @@ namespace com.xyroh.lib.Services
             Log("Event: " + eventToLog);
         }
 
+        public static string GetLogPath()
+        {
+            string logPath = string.Empty;
+
+            if (Config.CanUseFileLog)
+            {
+                logPath = new FileInfo(Config.LogFile).FullName.ToString();
+            }
+
+            return logPath;
+        }
+
         public static void Log(string eventToLog)
         {
             System.Diagnostics.Debug.WriteLine("Debug Log: " + eventToLog);
@@ -29,12 +41,24 @@ namespace com.xyroh.lib.Services
             {
                 lock (locker)
                 {
-                    /*
-                     * 
-                     * TODO:    Better file path / folder / xplatform handling of the logfilepath
-                     */
 
                     string logFilePath = Config.LogFile;
+
+                    if (!File.Exists(logFilePath))
+                    {
+                        File.Create(logFilePath).Dispose();  //don't leave it open
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("*** Log Size: " + new FileInfo(logFilePath).Length.ToString());
+
+                        if (new FileInfo(logFilePath).Length > Config.MaxLogSize) 
+                        {
+                            Console.WriteLine("*** Recycling Log File ***");
+                            File.WriteAllText(logFilePath, String.Empty);
+                        }
+                    }
 
                     using (FileStream file = new FileStream(logFilePath, FileMode.Append, FileAccess.Write, FileShare.None))
                     {
