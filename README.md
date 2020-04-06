@@ -11,7 +11,12 @@ Not currently finished, polished, but watch this space and use and enhance as yo
 ```
 XyrohLib.setFileLog("debug.log", 1000000); //1MB
 ```
+* Can get full log file path back from Lib
 
+```
+XyrohLib.setFileLog("test.log");
+XyrohLib.GetLogPath()); ///Users/Dev/Xyroh/XyrohLib/XyrohLib/ConsoleTest/bin/Debug/netcoreapp2.0/test.log
+```
 
 
 ## Feature Requests
