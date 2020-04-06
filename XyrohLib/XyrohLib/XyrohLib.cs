@@ -65,6 +65,11 @@ namespace com.xyroh.lib
             Config.MaxLogSize = maxSize;
         }
 
+        public static string GetLogPath()
+        {
+            return Logger.GetLogPath();
+        }
+
         #endregion
 
 

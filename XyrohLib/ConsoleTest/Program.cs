@@ -23,10 +23,12 @@ namespace ConsoleTest
 
             //XyrohLib.setAnalytics("13e9d1b9-7bae-4e4d-b20c-b8e5e7779d58", "917eea77-d8c0-4fc2-a2dd-940da5e8dd87");
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 XyrohLib.LogEvent("Test Analytics Event" + i);
             }
+
+            Console.WriteLine("File Path: " + XyrohLib.GetLogPath());
 
             //throw new Exception("KaBlam2");
 

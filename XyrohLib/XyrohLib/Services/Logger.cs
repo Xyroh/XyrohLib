@@ -21,6 +21,18 @@ namespace com.xyroh.lib.Services
             Log("Event: " + eventToLog);
         }
 
+        public static string GetLogPath()
+        {
+            string logPath = string.Empty;
+
+            if (Config.CanUseFileLog)
+            {
+                logPath = new FileInfo(Config.LogFile).FullName.ToString();
+            }
+
+            return logPath;
+        }
+
         public static void Log(string eventToLog)
         {
             System.Diagnostics.Debug.WriteLine("Debug Log: " + eventToLog);
