@@ -23,7 +23,7 @@ XyrohLib.GetLogPath()); ///Users/Dev/Xyroh/XyrohLib/XyrohLib/ConsoleTest/bin/Deb
 For things we're working on ourselves, or to request we add support please head over to our [Ideas Board](https://clients.xyroh.com/c/feature-requests/xyrohlib/8) to see the state of play and make a request
 
 ## Support
-This is not a commercial project, so very much on your own, but if you get stuck feel free to raise a [Support Ticket](https://xyroh.atlassian.net/servicedesk/customer/portal/2/topic/46876d1c-e6a6-4fbb-8234-371c3259fecb) and we'll see what we can do on a best endeavours basis
+This is not a commercial project, so very much on your own, but if you get stuck feel free to raise a [Support Ticket](https://xyroh.atlassian.net/servicedesk/customer/portal/2/group/-1) and we'll see what we can do on a best endeavours basis
 
 ### Build Status
 [![Master](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_apis/build/status/Xyroh.XyrohLib?branchName=master)](https://xyroh.visualstudio.com/Xyroh%20Build%20Projects/_build/latest?definitionId=12&branchName=master)
