@@ -17,7 +17,15 @@ namespace com.xyroh.lib.Services
         {
             if (Config.CanUseAnalytics)
             {
-                AppCenter.Start("ios=" + Config.AnalyticsKey + " ;android=" + Config.AnalyticsKey2 , typeof(Analytics));    //Analytics only
+                if(String.IsNullOrEmpty(Config.AnalyticsKey2))
+                {
+                    AppCenter.Start("ios=" + Config.AnalyticsKey, typeof(Analytics));    //Analytics only
+                }
+                else
+                {
+                    AppCenter.Start("ios=" + Config.AnalyticsKey + " ;android=" + Config.AnalyticsKey2, typeof(Analytics));    //Analytics only
+                }
+                
                 LogEvent("App Started");
             }
         }

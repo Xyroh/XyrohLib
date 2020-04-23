@@ -88,11 +88,26 @@ namespace com.xyroh.lib
         public static void LogEvent(string eventToLog)
         {
             AppCenterAnalytics.LogEvent(eventToLog);
+            Sentry.LogBreadcrumb(eventToLog, "event"); //bacwards compat
             Logger.LogEvent(eventToLog); //bump to one below
         }
         public static void LogEvent(string eventToLog, Dictionary<string, string> dict)
         {
             AppCenterAnalytics.LogEvent(eventToLog, dict);
+            Sentry.LogBreadcrumb(eventToLog, "event"); //bacwards compat
+            Logger.LogEvent(eventToLog);
+        }
+
+        public static void LogEvent(string eventToLog, string category)
+        {
+            AppCenterAnalytics.LogEvent(category + " : " + eventToLog);
+            Sentry.LogBreadcrumb(eventToLog, category);
+            Logger.LogEvent(eventToLog); //bump to one below
+        }
+        public static void LogEvent(string eventToLog, Dictionary<string, string> dict, string category)
+        {
+            AppCenterAnalytics.LogEvent(category + " : " + eventToLog, dict);
+            Sentry.LogBreadcrumb(eventToLog, category);
             Logger.LogEvent(eventToLog);
         }
 
@@ -100,7 +115,7 @@ namespace com.xyroh.lib
 
         #region CrashReporter
 
-        public static void setCrashreporter(string key)
+        public static void setCrashreporter(string key) //this is the depreciated DSN in Sentry
         {
             Config.CrashReporterKey = key;
             Sentry.SetConfig();

@@ -51,7 +51,7 @@ namespace com.xyroh.lib.Services
                     else
                     {
 
-                        Console.WriteLine("*** Log Size: " + new FileInfo(logFilePath).Length.ToString());
+                        //Console.WriteLine("*** Log Size: " + new FileInfo(logFilePath).Length.ToString());
 
                         if (new FileInfo(logFilePath).Length > Config.MaxLogSize) 
                         {

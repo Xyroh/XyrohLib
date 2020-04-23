@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using com.xyroh.lib;
 
 
@@ -17,23 +18,34 @@ namespace ConsoleTest
 
             XyrohLib.setFileLog("test.log");
             //XyrohLib.setFileLog("test.log", 5000);
-            //XyrohLib.setCrashreporter("https://39b42ba5c36b4f6c97592672d3f0e1fc:05c1dc1d83a24e2190026a85ca585410@sentry.io/292140");
+            XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766"); 
             //XyrohLib.Test();
             //XyrohLib.Log("test log 10 ");
 
-            //XyrohLib.setAnalytics("13e9d1b9-7bae-4e4d-b20c-b8e5e7779d58", "917eea77-d8c0-4fc2-a2dd-940da5e8dd87");
+            //XyrohLib.setAnalytics("72ee597c-23c4-4f7a-a312-ff0105facffd", "");
 
-            for (int i = 0; i < 100; i++)
+            /*for (int i = 0; i < 100; i++)
             {
                 XyrohLib.LogEvent("Test Analytics Event" + i);
-            }
+            }*/
 
             Console.WriteLine("File Path: " + XyrohLib.GetLogPath());
 
-            //throw new Exception("KaBlam2");
+           
 
 
             //logger.Log("test from console");
+
+            XyrohLib.LogEvent("Test Event");
+            XyrohLib.LogEvent("Test Event 2", "Test Cat");
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("Test Key 1", "Test Result 1");
+            dict.Add("Test Key 2", "Test Result 2");
+            dict.Add("Test Key 3", "Test Result 3");
+            XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");
+            //XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
+            throw new Exception("KaBlam5");
         }
 
 
