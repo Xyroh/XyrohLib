@@ -35,7 +35,15 @@ namespace com.xyroh.lib.Services
 
         public static void Log(string eventToLog)
         {
-            System.Diagnostics.Debug.WriteLine("Debug Log: " + eventToLog);
+	        if (Environment.UserInteractive) //we have a console
+	        {
+		        Console.WriteLine("Debug Log: " + eventToLog);
+	        }
+	        else
+	        {
+		        System.Diagnostics.Debug.WriteLine("Debug Log: " + eventToLog);
+	        }
+            
 
             if (Config.CanUseFileLog)
             {
@@ -55,7 +63,15 @@ namespace com.xyroh.lib.Services
 
                         if (new FileInfo(logFilePath).Length > Config.MaxLogSize) 
                         {
-                            Console.WriteLine("*** Recycling Log File ***");
+	                        if (Environment.UserInteractive) //we have a console
+	                        {
+		                        Console.WriteLine("*** Recycling Log File ***");
+	                        }
+	                        else
+	                        {
+		                        System.Diagnostics.Debug.WriteLine("*** Recycling Log File ***");
+	                        }
+                            
                             File.WriteAllText(logFilePath, String.Empty);
                         }
                     }
