@@ -22,7 +22,7 @@ namespace ConsoleTest
             //XyrohLib.Test();
             //XyrohLib.Log("test log 10 ");
 
-            //XyrohLib.setAnalytics("72ee597c-23c4-4f7a-a312-ff0105facffd", "");
+            XyrohLib.setAnalytics("9410392a-f382-42c8-8fd5-0dd720e779b4", ""); //worst apps android
 
             /*for (int i = 0; i < 100; i++)
             {
@@ -36,16 +36,17 @@ namespace ConsoleTest
 
             //logger.Log("test from console");
 
-            XyrohLib.LogEvent("Test Event");
+            /*XyrohLib.LogEvent("Test Event");
             XyrohLib.LogEvent("Test Event 2", "Test Cat");
 
             Dictionary<string, string> dict = new Dictionary<string, string>();
             dict.Add("Test Key 1", "Test Result 1");
             dict.Add("Test Key 2", "Test Result 2");
             dict.Add("Test Key 3", "Test Result 3");
-            XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");
-            //XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
-            throw new Exception("KaBlam5");
+            XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");*/
+            
+            XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
+            //throw new Exception("KaBlam5");
         }
 
 

@@ -5,6 +5,7 @@ using System.IO;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace com.xyroh.lib.Services
 {
@@ -19,11 +20,11 @@ namespace com.xyroh.lib.Services
             {
                 if(String.IsNullOrEmpty(Config.AnalyticsKey2))
                 {
-                    AppCenter.Start("ios=" + Config.AnalyticsKey, typeof(Analytics));    //Analytics only
+                    AppCenter.Start("ios=" + Config.AnalyticsKey, typeof(Analytics), typeof(Crashes));
                 }
                 else
                 {
-                    AppCenter.Start("ios=" + Config.AnalyticsKey + " ;android=" + Config.AnalyticsKey2, typeof(Analytics));    //Analytics only
+                    AppCenter.Start("ios=" + Config.AnalyticsKey + " ;android=" + Config.AnalyticsKey2, typeof(Analytics), typeof(Crashes));    //Analytics only
                 }
                 
                 LogEvent("App Started");
@@ -47,11 +48,12 @@ namespace com.xyroh.lib.Services
             }
         }
 
-        public static void LogCrash(string eventToLog)
+        public static void LogCrash(Exception exp)
         {
             if (Config.CanUseAnalytics)
             {
-                Analytics.TrackEvent("Crash: " + eventToLog);
+                Analytics.TrackEvent("Crash: " + exp.Message);
+                Crashes.TrackError(exp);
             }
         }
 

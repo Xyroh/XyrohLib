@@ -124,14 +124,14 @@ namespace com.xyroh.lib
         public static void LogCrash(Exception exp)
         {
             Logger.LogException(exp.Message, exp);
-            AppCenterAnalytics.LogCrash(exp.Message);
+            AppCenterAnalytics.LogCrash(exp);
             Sentry.LogException(exp.Message, exp);
 
         }
         public static void LogCrash(string eventToLog, Exception exp)
         {
             Logger.LogException(exp.Message, exp);
-            AppCenterAnalytics.LogCrash(exp.Message);
+            AppCenterAnalytics.LogCrash(exp);
             Sentry.LogException(eventToLog, exp);
         }
         public static void LogException(string eventToLog, Exception exp) //0.1 compatibility
