@@ -4,6 +4,8 @@
     <RootNamespace>com.xyroh.lib</RootNamespace>
     <ReleaseVersion>1.1.0</ReleaseVersion>
     <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
