@@ -9,4 +9,15 @@
   <ItemGroup>
     <ProjectReference Include="..\XyrohLib\XyrohLib.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="test.jpg" />
+    <Content Include="test.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+		<None Remove="test2.jpg" />
+		<Content Include="test2.jpg">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+  </ItemGroup>
 </Project>
