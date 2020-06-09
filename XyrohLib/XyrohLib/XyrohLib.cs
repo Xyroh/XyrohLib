@@ -6,6 +6,7 @@ using com.xyroh.lib.Services;
 using Microsoft.AppCenter.Analytics;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace com.xyroh.lib
 {
@@ -73,6 +74,80 @@ namespace com.xyroh.lib
         #endregion
 
 
+        #region helpdesk
+
+        public static void SetHelpDesk(string url, string user, string pass)
+        {
+	        Config.HelpDeskUrl = url;
+	        Config.HelpDeskUser = user;
+	        Config.HelpDeskPass = pass;
+	        Freshdesk.SetConfig();
+        }
+
+        
+        public static async Task<int> CreateTicket(string email, string subject, string description)
+        {
+	        int ticketId = 0;
+	        try
+	        {
+		        ticketId = await CreateTicket(email, subject, description, new string[] { });
+	        }
+	        catch (Exception ex)
+	        {
+		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+	        }
+	        return ticketId;
+        }
+        public static async Task<int> CreateTicket(string email, string subject, string description, string[] tags)
+        {
+	        LogEvent("Creating Ticket: " + subject, "HELPDESK");
+	        
+	        int ticketId = 0;
+	        try
+	        {
+		        ticketId = await Freshdesk.CreateTicket(email, subject, description, tags);
+	        }
+	        catch (Exception ex)
+	        {
+		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+	        }
+	        
+	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+	        return ticketId;
+        }
+        
+        public static async Task<int> CreateTicketWithAttachment(string email, string subject, string description, List<string> attachments)
+        {
+	        int ticketId = 0;
+	        try
+	        {
+		        ticketId = await CreateTicketWithAttachment(email, subject, description, new string[] { }, attachments);
+	        }
+	        catch (Exception ex)
+	        {
+		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+	        }
+	        return ticketId;
+        }
+        public static async Task<int> CreateTicketWithAttachment(string email, string subject, string description, string[] tags, List<string> attachments)
+        {
+	        LogEvent("Creating Ticket with Attachment: " + subject, "HELPDESK");
+	        
+	        int ticketId = 0;
+	        try
+	        {
+		        ticketId = await Freshdesk.CreateTicketWithAttachment(email, subject, description, tags, attachments);
+	        }
+	        catch (Exception ex)
+	        {
+		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+	        }
+	        
+	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+	        return ticketId;
+        }
+        
+        #endregion
 
         #region Analytics
 
