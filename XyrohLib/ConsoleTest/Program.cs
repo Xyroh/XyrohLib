@@ -18,7 +18,7 @@ namespace ConsoleTest
 
             XyrohLib.setFileLog("test.log");
             // XyrohLib.setFileLog("test.log", 5000);
-            // XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766"); 
+            // XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766");
             // XyrohLib.Test();
             // XyrohLib.Log("test log 10 ");
 
@@ -30,23 +30,24 @@ namespace ConsoleTest
             }*/
 
             Console.WriteLine("File Path: " + XyrohLib.GetLogPath());
-            
+
             // Freshdesk
-            
+
             // Don't need pass with API so just send something
             XyrohLib.SetHelpDesk("https://xyroh.freshdesk.com", "bH2xmn4atsRUVHxFI9x", "xxx");
-	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
+	        var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
 	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
 
 	        var attach = new List<string>();
 	        attach.Add("test.jpg");
 	        attach.Add("test2.jpg");
-	        
-	        var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App without tags", "This is the ticket body", attach).Result;
+
+	        var test2 = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App without tags", "This is the ticket body", attach).Result;
 	        //var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App with tags", "This is the ticket body", new string[] {"api", "test"}, attach).Result;
 	        Console.WriteLine("RESULT: " + test);
+	        Console.WriteLine("RESULT: " + test2);
 
-            
+
 
             /* XyrohLib.LogEvent("Test Event");
             XyrohLib.LogEvent("Test Event 2", "Test Cat");
@@ -59,7 +60,7 @@ namespace ConsoleTest
 
             // XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
             // throw new Exception("KaBlam5");
-            
+
             Console.WriteLine("FIN");
         }
 
