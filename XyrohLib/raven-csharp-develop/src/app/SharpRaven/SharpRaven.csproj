@@ -3,7 +3,7 @@
     <TargetFrameworks>netstandard2.0;</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     
-    <ReleaseVersion>1.6.0</ReleaseVersion>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
 
 

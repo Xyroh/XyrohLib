@@ -10,6 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{05C3D3D7-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{27BA187C-326D-4A34-9228-9A0B70859AFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{65925360-CB21-43F7-B057-907C05A452DD}"
+ProjectSection(SolutionItems) = preProject
+	..\changelog.md = ..\changelog.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +53,6 @@ Global
 		$7.TabsToSpaces = True
 		$7.scope = text/plain
 		$0.StandardHeader = $8
-		version = 1.0.0
+		version = 1.1.0
 	EndGlobalSection
 EndGlobal

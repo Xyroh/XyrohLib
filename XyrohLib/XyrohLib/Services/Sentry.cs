@@ -31,6 +31,19 @@ namespace com.xyroh.lib.Services
             }
         }
 
+        public static void LogBreadcrumb (string eventToLog, string category)
+        {
+
+            if (Config.CanUseCrashReporter)
+            {
+                Breadcrumb crumb = new Breadcrumb(category);
+                crumb.Message = eventToLog;
+                crumb.Level = BreadcrumbLevel.Info;
+
+                sentryClient.AddTrail(crumb);
+            }
+        }
+
 
     }
 

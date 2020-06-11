@@ -1,15 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>com.xyroh.lib</RootNamespace>
-    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
+    <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
     <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
-    <PackageReference Include="Microsoft.AppCenter" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter" Version="3.2.2" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
     <PackageReference Include="SharpRaven" Version="2.4.0" />
   </ItemGroup>
 </Project>

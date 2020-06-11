@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace com.xyroh.lib
@@ -79,6 +80,63 @@ namespace com.xyroh.lib
                     CanUseCrashReporter = false;
                 }
             }
+        }
+
+        static public bool CanUseHelpDesk = false;
+        static private string helpDeskUser { get; set; }
+        static public string HelpDeskUser
+        {
+	        get { return helpDeskUser; }
+	        set
+	        {
+		        helpDeskUser = value;
+		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
+		            !string.IsNullOrEmpty(helpDeskUrl))
+		        {
+			        CanUseHelpDesk = true;
+		        }
+		        else
+		        {
+			        CanUseHelpDesk = false;
+		        }
+	        }
+        }
+        static private string helpDeskPass { get; set; }
+        static public string HelpDeskPass
+        {
+	        get { return helpDeskPass; }
+	        set
+	        {
+		        helpDeskPass = value;
+		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
+		            !string.IsNullOrEmpty(helpDeskUrl))
+		        {
+			        CanUseHelpDesk = true;
+		        }
+		        else
+		        {
+			        CanUseHelpDesk = false;
+		        }
+	        }
+        }
+        static private string helpDeskUrl { get; set; }
+
+        static public string HelpDeskUrl
+        {
+	        get { return helpDeskUrl; }
+	        set
+	        {
+		        helpDeskUrl = value;
+		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
+		            !string.IsNullOrEmpty(helpDeskUrl))
+		        {
+			        CanUseHelpDesk = true;
+		        }
+		        else
+		        {
+			        CanUseHelpDesk = false;
+		        }
+	        }
         }
 
     }
