@@ -13,16 +13,16 @@ namespace com.xyroh.lib
 
 
     /*
-     * 
-     * In end project add reference to sharpraven (don't use sharpraven src unless have to) and this xyrohlib project, also add 
-     * 
-     * 
+     *
+     * In end project add reference to sharpraven (don't use sharpraven src unless have to) and this xyrohlib project, also add
+     *
+     *
      *  `System.Configuration.ConfigurationManager` referenced by assembly `SharpRaven, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null`.
-`Newtonsoft.Json` 
-`Microsoft.AppCenter.Analytics` 
-`Microsoft.AppCenter` 
-     * 
-     * 
+`Newtonsoft.Json`
+`Microsoft.AppCenter.Analytics`
+`Microsoft.AppCenter`
+     *
+     *
      */
 
 
@@ -81,13 +81,14 @@ namespace com.xyroh.lib
 	        Config.HelpDeskUrl = url;
 	        Config.HelpDeskUser = user;
 	        Config.HelpDeskPass = pass;
-	        Freshdesk.SetConfig();
+	        //Freshdesk.SetConfig();
         }
 
-        
+
         public static async Task<int> CreateTicket(string email, string subject, string description)
         {
 	        int ticketId = 0;
+	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await CreateTicket(email, subject, description, new string[] { });
@@ -101,8 +102,9 @@ namespace com.xyroh.lib
         public static async Task<int> CreateTicket(string email, string subject, string description, string[] tags)
         {
 	        LogEvent("Creating Ticket: " + subject, "HELPDESK");
-	        
+
 	        int ticketId = 0;
+	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await Freshdesk.CreateTicket(email, subject, description, tags);
@@ -111,14 +113,15 @@ namespace com.xyroh.lib
 	        {
 		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
 	        }
-	        
+
 	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
 	        return ticketId;
         }
-        
+
         public static async Task<int> CreateTicketWithAttachment(string email, string subject, string description, List<string> attachments)
         {
 	        int ticketId = 0;
+	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await CreateTicketWithAttachment(email, subject, description, new string[] { }, attachments);
@@ -132,8 +135,9 @@ namespace com.xyroh.lib
         public static async Task<int> CreateTicketWithAttachment(string email, string subject, string description, string[] tags, List<string> attachments)
         {
 	        LogEvent("Creating Ticket with Attachment: " + subject, "HELPDESK");
-	        
+
 	        int ticketId = 0;
+	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await Freshdesk.CreateTicketWithAttachment(email, subject, description, tags, attachments);
@@ -142,11 +146,11 @@ namespace com.xyroh.lib
 	        {
 		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
 	        }
-	        
+
 	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
 	        return ticketId;
         }
-        
+
         #endregion
 
         #region Analytics
