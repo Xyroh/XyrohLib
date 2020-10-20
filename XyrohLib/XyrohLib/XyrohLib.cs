@@ -174,6 +174,10 @@ namespace com.xyroh.lib
         {
             AppCenterAnalytics.LogEvent(eventToLog, dict);
             Sentry.LogBreadcrumb(eventToLog, "event"); //bacwards compat
+            foreach(var item in dict)
+            {
+	            Sentry.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, "event");
+            }
             Logger.LogEvent(eventToLog);
         }
 
@@ -187,6 +191,10 @@ namespace com.xyroh.lib
         {
             AppCenterAnalytics.LogEvent(category + " : " + eventToLog, dict);
             Sentry.LogBreadcrumb(eventToLog, category);
+            foreach(var item in dict)
+            {
+	            Sentry.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, category);
+            }
             Logger.LogEvent(eventToLog);
         }
 
