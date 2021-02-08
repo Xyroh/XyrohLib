@@ -164,19 +164,21 @@ namespace com.xyroh.lib
 
         }
 
+
+
         public static void LogEvent(string eventToLog)
         {
             AppCenterAnalytics.LogEvent(eventToLog);
-            Sentry.LogBreadcrumb(eventToLog, "event"); //bacwards compat
+            SentryAbstraction.LogBreadcrumb(eventToLog, "event"); //bacwards compat
             Logger.LogEvent(eventToLog); //bump to one below
         }
         public static void LogEvent(string eventToLog, Dictionary<string, string> dict)
         {
             AppCenterAnalytics.LogEvent(eventToLog, dict);
-            Sentry.LogBreadcrumb(eventToLog, "event"); //bacwards compat
+            SentryAbstraction.LogBreadcrumb(eventToLog, "event"); //bacwards compat
             foreach(var item in dict)
             {
-	            Sentry.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, "event");
+	            SentryAbstraction.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, "event");
             }
             Logger.LogEvent(eventToLog);
         }
@@ -184,16 +186,16 @@ namespace com.xyroh.lib
         public static void LogEvent(string eventToLog, string category)
         {
             AppCenterAnalytics.LogEvent(category + " : " + eventToLog);
-            Sentry.LogBreadcrumb(eventToLog, category);
+            SentryAbstraction.LogBreadcrumb(eventToLog, category);
             Logger.LogEvent(eventToLog); //bump to one below
         }
         public static void LogEvent(string eventToLog, Dictionary<string, string> dict, string category)
         {
             AppCenterAnalytics.LogEvent(category + " : " + eventToLog, dict);
-            Sentry.LogBreadcrumb(eventToLog, category);
+            SentryAbstraction.LogBreadcrumb(eventToLog, category);
             foreach(var item in dict)
             {
-	            Sentry.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, category);
+	            SentryAbstraction.LogBreadcrumb(eventToLog + " : " + item.Key + " : " + item.Value, category);
             }
             Logger.LogEvent(eventToLog);
         }
@@ -205,21 +207,29 @@ namespace com.xyroh.lib
         public static void setCrashreporter(string key) //this is the depreciated DSN in Sentry
         {
             Config.CrashReporterKey = key;
-            Sentry.SetConfig();
+            SentryAbstraction.SetConfig();
         }
+
+        public static void setCrashreporter(string key, string release) //this is the depreciated DSN in Sentry
+        {
+	        Config.CrashReporterKey = key;
+	        Config.ReleaseVersion = release;
+	        SentryAbstraction.SetConfig();
+        }
+
 
         public static void LogCrash(Exception exp)
         {
             Logger.LogException(exp.Message, exp);
             AppCenterAnalytics.LogCrash(exp);
-            Sentry.LogException(exp.Message, exp);
+            SentryAbstraction.LogException(exp.Message, exp);
 
         }
         public static void LogCrash(string eventToLog, Exception exp)
         {
             Logger.LogException(exp.Message, exp);
             AppCenterAnalytics.LogCrash(exp);
-            Sentry.LogException(eventToLog, exp);
+            SentryAbstraction.LogException(eventToLog, exp);
         }
         public static void LogException(string eventToLog, Exception exp) //0.1 compatibility
         {

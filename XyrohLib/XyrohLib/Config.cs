@@ -82,6 +82,16 @@ namespace com.xyroh.lib
             }
         }
 
+        static private string releaseVersion { get; set; }
+        static public string ReleaseVersion
+        {
+	        get { return releaseVersion; }
+	        set
+	        {
+		        releaseVersion = value;
+	        }
+        }
+
         static public bool CanUseHelpDesk = false;
         static private string helpDeskUser { get; set; }
         static public string HelpDeskUser

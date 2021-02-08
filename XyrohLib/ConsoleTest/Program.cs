@@ -18,9 +18,11 @@ namespace ConsoleTest
 
             XyrohLib.setFileLog("test.log");
             // XyrohLib.setFileLog("test.log", 5000);
-            // XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766");
+            // test-project
+             //XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766");
+             XyrohLib.setCrashreporter("https://7eaf2508f8fe4db58d63aec2ce57a525:aed37d0dcd8843128068ea7cce894036@o129318.ingest.sentry.io/5210766", "XyrohLib@1.2.0");
             // XyrohLib.Test();
-            // XyrohLib.Log("test log 10 ");
+            XyrohLib.Log("test");
 
             // XyrohLib.setAnalytics("9410392a-f382-42c8-8fd5-0dd720e779b4", ""); //worst apps android
 
@@ -34,9 +36,9 @@ namespace ConsoleTest
             // Freshdesk
 
             // Don't need pass with API so just send something
-            //XyrohLib.SetHelpDesk("https://xyroh.freshdesk.com", "bH2xmn4atsRUVHxFI9x", "xxx");
+            // XyrohLib.SetHelpDesk("https://xyroh.freshdesk.com", "bH2xmn4atsRUVHxFI9x", "xxx");
 	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
-	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
+	        // var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
 
 	        //var attach = new List<string>();
 	        //attach.Add("test.jpg");
@@ -49,7 +51,7 @@ namespace ConsoleTest
 
 
 
-	        //XyrohLib.LogEvent("Test Event");
+	        // XyrohLib.LogEvent("Test Event");
             //XyrohLib.LogEvent("Test Event 2", "Test Cat");
 
             Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -58,7 +60,7 @@ namespace ConsoleTest
             dict.Add("Test Key 3", "Test Result 3");
             XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");
 
-            // XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
+            XyrohLib.LogCrash("Test", new Exception("KaBlam2"));
             // throw new Exception("KaBlam5");
 
             Console.WriteLine("FIN");
