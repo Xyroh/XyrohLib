@@ -34,7 +34,8 @@ namespace ConsoleTest
             // Freshdesk
 
             // Don't need pass with API so just send something
-            //XyrohLib.SetHelpDesk("https://xyroh.freshdesk.com", "bH2xmn4atsRUVHxFI9x", "xxx");
+            // XyrohLib.SetHelpDesk("https://xyroh.freshdesk.com", "bH2xmn4atsRUVHxFI9x", "xxx");
+            // var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
 	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
 	        //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
 
@@ -44,7 +45,7 @@ namespace ConsoleTest
 
 	        //var test2 = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App without tags", "This is the ticket body", attach).Result;
 	        //var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App with tags", "This is the ticket body", new string[] {"api", "test"}, attach).Result;
-	        //Console.WriteLine("RESULT: " + test);
+	        // Console.WriteLine("RESULT: " + test);
 	        //Console.WriteLine("RESULT: " + test2);
 
 
@@ -52,14 +53,31 @@ namespace ConsoleTest
 	        //XyrohLib.LogEvent("Test Event");
             //XyrohLib.LogEvent("Test Event 2", "Test Cat");
 
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            /*Dictionary<string, string> dict = new Dictionary<string, string>();
             dict.Add("Test Key 1", "Test Result 1");
             dict.Add("Test Key 2", "Test Result 2");
             dict.Add("Test Key 3", "Test Result 3");
-            XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");
+            XyrohLib.LogEvent("Test Event 3", dict, "Test Cat");*/
 
             // XyrohLib.LogCrash("Test", new Exception("KaBlam3"));
             // throw new Exception("KaBlam5");
+
+
+            // Zendesk
+
+            XyrohLib.SetHelpDesk("Zendesk", "https://xyrohsupport.zendesk.com", "af@xyroh.com/token", "mj1O7ahKrIbccFBK7iPVW4bSHF63xsYqeRk1dzTz");
+            var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
+            //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
+
+            //var attach = new List<string>();
+            //attach.Add("test.jpg");
+            //attach.Add("test2.jpg");
+
+            //var test2 = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App without tags", "This is the ticket body", attach).Result;
+            //var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App with tags", "This is the ticket body", new string[] {"api", "test"}, attach).Result;
+            Console.WriteLine("RESULT: " + test);
+            //Console.WriteLine("RESULT: " + test2);
+
 
             Console.WriteLine("FIN");
         }
