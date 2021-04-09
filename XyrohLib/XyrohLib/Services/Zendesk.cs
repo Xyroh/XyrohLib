@@ -16,6 +16,8 @@ namespace com.xyroh.lib.Services
 		private static HttpClient client;
 		private static readonly string apiPath = "/api/v2/requests.json";
 		private static string url;
+		private static readonly string apiPathAttachments = "/api/v2/uploads";
+		private static string urlAttachments;
 
 		public static Config Config { get; set; }
 
@@ -25,8 +27,10 @@ namespace com.xyroh.lib.Services
 			{
 				client = new HttpClient();
 				url = Config.HelpDeskUrl + apiPath;
+				urlAttachments = Config.HelpDeskUrl + apiPathAttachments;
 
 				Logger.Log("URL: " + url);
+				Logger.Log("URL: " + urlAttachments);
 			}
 		}
 
@@ -46,91 +50,105 @@ namespace com.xyroh.lib.Services
 				ticket.request.tags = tags;
 				ticket.request.priority = "normal";
 				ticket.request.subject = subject;
-
 			}
 
-			return await sendTicket(ticket);
+			return await sendTicket(ticket, null);
 		}
 
-		/*public static async Task<int> CreateRequestWithAttachment(string email, string subject, string description, string[] tags, List<string> attachments)
+		public static async Task<int> CreateRequestWithAttachment(string email, string subject, string description, string[] tags, List<string> attachments)
 		{
-			var ticket = new ZendeskTicket();
+			var ticket = new ZendeskBaseRequest();
 
 			if (Config.CanUseHelpDesk)
 			{
-				ticket = new ZendeskTicket();
-				ticket.email = email;
-				ticket.subject = subject;
-				ticket.description = description;
-				ticket.tags = tags;
-				ticket.attachments = attachments;
+				ticket.request = new ZendeskRequest();
+				ticket.request.requester = new ZendeskRequester();
+				ticket.request.requester.email = email;
+				ticket.request.requester.name = email;
+				ticket.request.comment = new ZendeskComment();
+				ticket.request.comment.body = description;
+				ticket.request.tags = tags;
+				ticket.request.priority = "normal";
+				ticket.request.subject = subject;
 			}
 
-			return await sendTicket(ticket);
-		}*/
+			return await sendTicket(ticket, attachments);
+		}
 
 
-		private static async Task<int> sendTicket(ZendeskBaseRequest request)
+		private static async Task<int> sendTicket(ZendeskBaseRequest baseRequest, List<string> attachments)
 		{
 			int ticketId = 0;
 
 			try
 			{
+				// var authArray = Encoding.ASCII.GetBytes(Config.HelpDeskUser + ":" + Config.HelpDeskPass);
+				// client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(authArray));
 				client.Timeout = TimeSpan.FromSeconds(15);
 
-				var json = JsonConvert.SerializeObject(request);
+				var token = string.Empty;
 
 				HttpResponseMessage response;
 
 				// Got attachments?
-				/*if (request.attachments != null && request.attachments.Count > 0)
+				if (attachments!=null && attachments.Count > 0)
 				{
+					// Upload attachments to get tokens, then create the ticket
 
-					using (var formData = new MultipartFormDataContent())
+					foreach (var file in attachments)
 					{
-						formData.Add(new StringContent(request.description), String.Format("\"description\""));
-						formData.Add(new StringContent(request.email), String.Format("\"email\""));
-						formData.Add(new StringContent(request.subject), String.Format("\"subject\""));
-						formData.Add(new StringContent(request.priority.ToString()), String.Format("\"priority\""));
-						formData.Add(new StringContent(request.source.ToString()), String.Format("\"source\""));
-						formData.Add(new StringContent(request.status.ToString()), String.Format("\"status\""));
+						Logger.Log("FOUND FILE: " + file);
 
-						foreach (var tag in request.tags)
+						var attachemntUrl = urlAttachments;
+						if (string.IsNullOrEmpty(token))
 						{
-							formData.Add(new StringContent(tag), String.Format("\"tags[]\""));
+							attachemntUrl = attachemntUrl + "?filename=" + Path.GetFileName(file);
+						}else{
+							attachemntUrl = attachemntUrl + "?filename=" + Path.GetFileName(file) + "&token=" + token;
+						}
+						Logger.Log("URL: " + attachemntUrl);
+
+						var fileContent = new ByteArrayContent(File.ReadAllBytes(file));
+						fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/binary");
+						response = await client.PostAsync(attachemntUrl, fileContent);
+
+						var responseBodyAttachments = await response.Content.ReadAsStringAsync();
+						// Logger.Log("RESP: " + responseBodyAttachments);
+
+						if (response.IsSuccessStatusCode)
+						{
+							var newUpload = JsonConvert.DeserializeObject<ZendeskBaseUpload>(responseBodyAttachments);
+							var newToken = newUpload.upload.token;
+							// Logger.Log("TOKEN: " + newToken);
+
+							if (string.IsNullOrEmpty(token))
+							{
+								token = newToken;
+
+								baseRequest.request.comment.uploads = new List<string>();
+								baseRequest.request.comment.uploads.Add(token);
+							}
 						}
 
-						foreach (var file in request.attachments)
-						{
-							//Console.WriteLine("FOUND FILE: " + file);
-
-							var fileContent = new ByteArrayContent(File.ReadAllBytes(file));
-							formData.Add(fileContent, String.Format("\"attachments[]\""), Path.GetFileName(file));
-
-						}
-
-						response = await client.PostAsync(url, formData);
 					}
+
 				}
-				else
-				{*/
 
-					// Logger.Log("CONTENT: " + json.ToString());
-					var content = new StringContent(json, Encoding.UTF8, "application/json");
+				var json = JsonConvert.SerializeObject(baseRequest);
 
-					response = await client.PostAsync(url, content);
-				//}
-
+				// Logger.Log("CONTENT: " + json.ToString());
+				var content = new StringContent(json, Encoding.UTF8, "application/json");
+				response = await client.PostAsync(url, content);
 
 				//response.EnsureSuccessStatusCode();
 				var responseBody = await response.Content.ReadAsStringAsync();
-				Logger.Log("RESP: " + responseBody);
+				// Logger.Log("RESP: " + responseBody);
 
 				if (response.IsSuccessStatusCode)
 				{
 					var newTicket = JsonConvert.DeserializeObject<ZendeskBaseRequest>(responseBody);
 					ticketId = newTicket.request.id;
-					Logger.Log("TICKET: " + ticketId);
+					// Logger.Log("TICKET: " + ticketId);
 				}
 			}
 			catch (Exception ex)
@@ -154,6 +172,7 @@ namespace com.xyroh.lib.Services
 	public class ZendeskComment
 	{
 		public string body { get; set; }
+		public List<string> uploads { get; set; }
 	}
 
 	public class ZendeskBaseRequest
@@ -168,9 +187,18 @@ namespace com.xyroh.lib.Services
 		public ZendeskComment comment { get; set; }
 		public string[] tags { get; set; }
 
-		public string[] uploads { get; set; }
+
 		public string priority { get; set; }
 		public string subject { get; set; }
 	}
 
+	public class ZendeskBaseUpload
+	{
+		public ZendeskUpload upload { get; set; }
+	}
+
+	public class ZendeskUpload
+	{
+		public string token { get; set; }
+	}
 }

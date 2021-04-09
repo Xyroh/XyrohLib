@@ -66,15 +66,16 @@ namespace ConsoleTest
             // Zendesk
 
             XyrohLib.SetHelpDesk("Zendesk", "https://xyrohsupport.zendesk.com", "af@xyroh.com/token", "mj1O7ahKrIbccFBK7iPVW4bSHF63xsYqeRk1dzTz");
-            var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
-            //var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
+            // var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App with tags", "This is the ticket body", new string[] {"api", "test"}).Result;
+            // var test = XyrohLib.CreateTicket("test@flish.co.uk", "Test Ticket from Console App without tags", "This is the ticket body").Result;
 
-            //var attach = new List<string>();
-            //attach.Add("test.jpg");
-            //attach.Add("test2.jpg");
+            var attach = new List<string>();
+            attach.Add("test.jpg");
+            attach.Add("test2.jpg");
+            attach.Add(XyrohLib.GetLogPath());
 
             //var test2 = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App without tags", "This is the ticket body", attach).Result;
-            //var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App with tags", "This is the ticket body", new string[] {"api", "test"}, attach).Result;
+            var test = XyrohLib.CreateTicketWithAttachment("test@flish.co.uk", "Test Ticket With Attachment from Console App with tags", "This is the ticket body", new string[] {"api", "test"}, attach).Result;
             Console.WriteLine("RESULT: " + test);
             //Console.WriteLine("RESULT: " + test2);
 

@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### WIP
 
+## [1.2.0] - 2021-04-09
+### Added
+- Added support for Zendesk as a Helpdesk with anonymous tickets closes #24
+### Changed
+- Logevent dictionaries get sent to Sentry as breadcrumbs
+
 ## [1.1.0] - 2020-06-11
 ### Added
 - Enabled Manual Crash Reporting to AppCenter #18

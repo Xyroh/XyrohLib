@@ -177,7 +177,17 @@ namespace com.xyroh.lib
 			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
 			        break;
 		        case "Zendesk":
+			        Zendesk.SetConfig();
+			        try
+			        {
+				        ticketId = await Zendesk.CreateRequestWithAttachment(email, subject, description, tags, attachments);
+			        }
+			        catch (Exception ex)
+			        {
+				        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+			        }
 
+			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
 			        break;
 	        }
 
