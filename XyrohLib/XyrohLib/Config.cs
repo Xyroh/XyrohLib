@@ -91,7 +91,7 @@ namespace com.xyroh.lib
 	        {
 		        helpDeskUser = value;
 		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
-		            !string.IsNullOrEmpty(helpDeskUrl))
+		            !string.IsNullOrEmpty(helpDeskUrl) && !string.IsNullOrEmpty(helpDeskType))
 		        {
 			        CanUseHelpDesk = true;
 		        }
@@ -109,7 +109,7 @@ namespace com.xyroh.lib
 	        {
 		        helpDeskPass = value;
 		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
-		            !string.IsNullOrEmpty(helpDeskUrl))
+		            !string.IsNullOrEmpty(helpDeskUrl) && !string.IsNullOrEmpty(helpDeskType))
 		        {
 			        CanUseHelpDesk = true;
 		        }
@@ -128,7 +128,26 @@ namespace com.xyroh.lib
 	        {
 		        helpDeskUrl = value;
 		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
-		            !string.IsNullOrEmpty(helpDeskUrl))
+		            !string.IsNullOrEmpty(helpDeskUrl) && !string.IsNullOrEmpty(helpDeskType))
+		        {
+			        CanUseHelpDesk = true;
+		        }
+		        else
+		        {
+			        CanUseHelpDesk = false;
+		        }
+	        }
+        }
+
+        static private string helpDeskType{ get; set; }
+        static public string HelpDeskType
+        {
+	        get { return helpDeskType; }
+	        set
+	        {
+		        helpDeskType = value;
+		        if (!string.IsNullOrEmpty(helpDeskUser) && !string.IsNullOrEmpty(helpDeskPass) &&
+		            !string.IsNullOrEmpty(helpDeskUrl) && !string.IsNullOrEmpty(helpDeskType))
 		        {
 			        CanUseHelpDesk = true;
 		        }

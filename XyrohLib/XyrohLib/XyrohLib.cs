@@ -78,17 +78,21 @@ namespace com.xyroh.lib
 
         public static void SetHelpDesk(string url, string user, string pass)
         {
+	        SetHelpDesk("Freshdesk", url, user, pass);
+        }
+
+        public static void SetHelpDesk(string type, string url, string user, string pass)
+        {
 	        Config.HelpDeskUrl = url;
 	        Config.HelpDeskUser = user;
 	        Config.HelpDeskPass = pass;
-	        //Freshdesk.SetConfig();
+	        Config.HelpDeskType = type;
         }
 
 
         public static async Task<int> CreateTicket(string email, string subject, string description)
         {
 	        int ticketId = 0;
-	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await CreateTicket(email, subject, description, new string[] { });
@@ -104,24 +108,43 @@ namespace com.xyroh.lib
 	        LogEvent("Creating Ticket: " + subject, "HELPDESK");
 
 	        int ticketId = 0;
-	        Freshdesk.SetConfig();
-	        try
+
+	        switch (Config.HelpDeskType)
 	        {
-		        ticketId = await Freshdesk.CreateTicket(email, subject, description, tags);
-	        }
-	        catch (Exception ex)
-	        {
-		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+		        case "Freshdesk":
+			        Freshdesk.SetConfig();
+			        try
+			        {
+				        ticketId = await Freshdesk.CreateTicket(email, subject, description, tags);
+			        }
+			        catch (Exception ex)
+			        {
+				        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+			        }
+
+			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+			        break;
+		        case "Zendesk":
+			        Zendesk.SetConfig();
+			        try
+			        {
+				        ticketId = await Zendesk.CreateRequest(email, subject, description, tags);
+			        }
+			        catch (Exception ex)
+			        {
+				        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+			        }
+
+			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+			        break;
 	        }
 
-	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
 	        return ticketId;
         }
 
         public static async Task<int> CreateTicketWithAttachment(string email, string subject, string description, List<string> attachments)
         {
 	        int ticketId = 0;
-	        Freshdesk.SetConfig();
 	        try
 	        {
 		        ticketId = await CreateTicketWithAttachment(email, subject, description, new string[] { }, attachments);
@@ -137,17 +160,38 @@ namespace com.xyroh.lib
 	        LogEvent("Creating Ticket with Attachment: " + subject, "HELPDESK");
 
 	        int ticketId = 0;
-	        Freshdesk.SetConfig();
-	        try
+
+	        switch (Config.HelpDeskType)
 	        {
-		        ticketId = await Freshdesk.CreateTicketWithAttachment(email, subject, description, tags, attachments);
-	        }
-	        catch (Exception ex)
-	        {
-		        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+		        case "Freshdesk":
+			        Freshdesk.SetConfig();
+			        try
+			        {
+				        ticketId = await Freshdesk.CreateTicketWithAttachment(email, subject, description, tags, attachments);
+			        }
+			        catch (Exception ex)
+			        {
+				        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+			        }
+
+			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+			        break;
+		        case "Zendesk":
+			        Zendesk.SetConfig();
+			        try
+			        {
+				        ticketId = await Zendesk.CreateRequestWithAttachment(email, subject, description, tags, attachments);
+			        }
+			        catch (Exception ex)
+			        {
+				        System.Diagnostics.Debug.WriteLine("EX:" + ex.StackTrace);
+			        }
+
+			        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+			        break;
 	        }
 
-	        LogEvent("Created Ticket: " + ticketId, "HELPDESK");
+
 	        return ticketId;
         }
 
